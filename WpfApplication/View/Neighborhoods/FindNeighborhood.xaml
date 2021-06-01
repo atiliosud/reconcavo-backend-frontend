@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfApplication.View.Neighborhoods.FindNeighborhood"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication.View.Neighborhoods"
+        xmlns:vm="clr-namespace:WpfApplication.ViewModel"
+        mc:Ignorable="d"
+        Title="Bairro" Height="600" Width="800">
+    <Window.Resources>
+        <vm:FindNeighborhoodViewModel x:Key="vm" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource vm}">
+        <TextBlock HorizontalAlignment="Left" Margin="141,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1.026,0.753"><Run Language="pt-br" Text="Bairro"/></TextBlock>
+        <TextBox Text="{Binding NeighborhoodSearch, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="192,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Command="{Binding SearchNeighborhoodCommand}" Content="Buscar" HorizontalAlignment="Left" Margin="332,51,0,0" VerticalAlignment="Top" Width="54" Click="btnFind_Click" />
+        <Button x:Name="btnNewNeighorhood" Content="Novo Bairro" HorizontalAlignment="Left" Margin="477,52,0,0" VerticalAlignment="Top" Width="81" Click="btnNewNeighorhood_Click"/>
+        <ComboBox Text="{Binding SizeSearch, Mode=TwoWay}"  SelectedIndex="0" HorizontalAlignment="Left" Margin="418,51,0,0" VerticalAlignment="Top" Width="42" IsReadOnly="True" >
+            <ComboBoxItem Content="10" x:Name="_10" ></ComboBoxItem>
+            <ComboBoxItem Content="25" x:Name="_25"></ComboBoxItem>
+            <ComboBoxItem Content="50" x:Name="_50"></ComboBoxItem>
+            <ComboBoxItem Content="100" x:Name="_100"></ComboBoxItem>
+        </ComboBox>
+        <DockPanel Margin="0,77,0,0" >
+            <DataGrid ItemsSource="{Binding Neighborhoods}" Margin="142,0,142,0" x:Name="gridNeighorhood" ColumnWidth="*" AutoGenerateColumns="False" x:FieldModifier="public" Height="479">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="80" />
+                    <DataGridTextColumn Header="Nome" Binding="{Binding Path=Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock HorizontalAlignment="Left" Margin="549,52,0,0" Text="Quantidade" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </DockPanel>
+        <Button Content="Voltar" x:Name="btnBack" HorizontalAlignment="Left" Margin="585,51,0,0" VerticalAlignment="Top" Width="65" Click="btnBack_Click"/>
+    </Grid>
+</Window>

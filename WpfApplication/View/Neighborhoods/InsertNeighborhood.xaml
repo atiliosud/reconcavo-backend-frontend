@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfApplication.View.Neighborhoods.InsertNeighborhood"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication.View.Neighborhoods"
+        xmlns:vm="clr-namespace:WpfApplication.ViewModel"
+        mc:Ignorable="d"
+        Title="Incluir bairro" Height="350" Width="400">
+    <Window.Resources>
+        <vm:InsertNeighborhoodViewModel x:Key="vm" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource vm}">
+        <TextBlock HorizontalAlignment="Left" Margin="40,104,0,0" Text="Nome" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding NeighborhoodInsert, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="118,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" x:Name="txtName"/>
+        <Button Command="{Binding InsertNeighborhoodCommand}"  Content="Salvar" HorizontalAlignment="Left" Margin="146,217,0,0" VerticalAlignment="Top" Width="120" x:Name="btnSave" Click="btnSave_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="188,36,0,0" Text="Bairro" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
